@@ -54,19 +54,17 @@ function createSamplePullRequest(gitHubRepository: GitHubRepository) {
 }
 
 describe('RepositoryStateCache', () => {
-  let r: Repository | null = null
+  let repository: Repository
   const defaultGetUsersFunc = (repo: Repository) =>
     new Map<string, IGitHubUser>()
 
   beforeEach(() => {
-    r = new Repository('/something/path', 1, null, false)
+    repository = new Repository('/something/path', 1, null, false)
   })
 
   it('can update branches state for a repository', () => {
     const gitHubRepository = createSampleGitHubRepository()
     const firstPullRequest = createSamplePullRequest(gitHubRepository)
-
-    const repository = r!
 
     const cache = new RepositoryStateCache(defaultGetUsersFunc)
 
@@ -92,7 +90,6 @@ describe('RepositoryStateCache', () => {
     ]
 
     const summary = 'Hello world!'
-    const repository = r!
 
     const cache = new RepositoryStateCache(defaultGetUsersFunc)
 
@@ -116,7 +113,6 @@ describe('RepositoryStateCache', () => {
 
   it('can update compare state for a repository', () => {
     const filterText = 'my-cool-branch'
-    const repository = r!
 
     const cache = new RepositoryStateCache(defaultGetUsersFunc)
 
